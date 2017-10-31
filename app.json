@@ -1,0 +1,5 @@
+{
+  "name": "Thermal-core",
+  "description": "Java framework to model and solve thermal systems",
+  "addons": [ "heroku-postgresql" ]
+}
