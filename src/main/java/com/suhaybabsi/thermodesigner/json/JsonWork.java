@@ -171,7 +171,7 @@ public class JsonWork {
 
                 JSONObject jf = new JSONObject();
                 jf.put("id", id);
-                jf.put("type", "flow");
+                jf.put("type", "pipe");
                 jf.put("props", jp);
 
                 flows.put(jf);
