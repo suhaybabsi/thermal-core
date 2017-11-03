@@ -57,7 +57,6 @@ public abstract class SteadyFlowDevice extends Device {
     }
 
     protected void insureFluids() throws ConfigurationException{ 
-        
         this.insureFluids(null);
     }
 

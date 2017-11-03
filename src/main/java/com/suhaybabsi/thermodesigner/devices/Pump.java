@@ -15,6 +15,8 @@ import com.suhaybabsi.thermodesigner.core.WorkType;
 import com.suhaybabsi.thermodesigner.thermo.Flow;
 import com.suhaybabsi.thermodesigner.thermo.fluid.FlowState;
 import com.suhaybabsi.thermodesigner.thermo.fluid.Fluid;
+import com.suhaybabsi.thermodesigner.thermo.fluid.Water;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -159,7 +161,7 @@ public class Pump extends TurboMachine implements WorkConsumingDevice {
     @Override
     protected void configureEquations() throws ConfigurationException {
         
-        insureFluids();
+        insureFluids(Water.getInstance());
         Flow f1 = flowManager.getIn(0);
         Flow f2 = flowManager.getOut(0);
         
