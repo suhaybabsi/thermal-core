@@ -55,7 +55,13 @@ public abstract class SteadyFlowDevice extends Device {
         f1.setFluid(fluid);
         f2.setFluid(fluid);
     }
-    protected void insureFluids() throws ConfigurationException{
+
+    protected void insureFluids() throws ConfigurationException{ 
+        
+        this.insureFluids(null);
+    }
+
+    protected void insureFluids(Fluid suggestFluid) throws ConfigurationException{
         
         List<Flow> allFlows = flowManager.getAllFlows();
         Fluid fluid = null;
@@ -66,10 +72,14 @@ public abstract class SteadyFlowDevice extends Device {
                 break;
             }
         }
+
+        if(fluid == null){
+            fluid = suggestFluid;
+        }
         
         if(fluid == null){
             throw new ConfigurationException(this, "Incompatible Fluid !");
-        }else{
+        } else {
             for(Flow f:allFlows){
                 f.setFluid(fluid);
             }

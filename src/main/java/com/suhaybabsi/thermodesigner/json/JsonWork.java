@@ -583,10 +583,6 @@ public class JsonWork {
         if (jp.isNull("pl") == false) {
             pipe.definePressureLoss(jp.getDouble("pl"));
         }
-        if (jp.isNull("f") == false) {
-            pipe.setFluid(Fluid.getFluid(jp.getString("f")));
-        }
-
     }
 
     private static Device parseAirFlow(JSONObject jp) throws JSONException {

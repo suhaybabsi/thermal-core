@@ -145,7 +145,7 @@ public class SteamTurbine extends TurboMachine implements WorkProducingDevice {
     @Override
     protected void configureEquations() throws ConfigurationException {
         
-        insureFluids();
+        insureFluids(Fluid.getFluid("water"));
         Flow f1 = flowManager.getIn(0);
         Flow f2 = flowManager.getOut(0);
         
