@@ -63,22 +63,18 @@ public class Pump extends TurboMachine implements WorkConsumingDevice {
     }
     
     private static class WorkEquation extends ThermalEquation {
-        
-        private final Property np_p;
+      
         private final Property wp_p;
         private final Flow pe_in;
         private final Flow pe_out;
         private final Property m_p;
-        private final FlowState state;
         
-        private WorkEquation(Property wp_p, Property np_p, Flow pe_in, Flow pe_out, Property m_p){
+        private WorkEquation(Property wp_p, Flow pe_in, Flow pe_out, Property m_p){
             super(wp_p, pe_in.getEnthalpyProp(), pe_out.getEnthalpyProp(), m_p);
-            this.np_p = np_p;
             this.wp_p = wp_p;
             this.pe_in = pe_in;
             this.pe_out = pe_out;
             this.m_p = m_p;
-            this.state = new FlowState();
         }
         
         @Override
@@ -89,25 +85,6 @@ public class Pump extends TurboMachine implements WorkConsumingDevice {
             double h2 = pe_out.getEnthalpy();
             
             double wp = wp_p.getValue();
-            
-            //double s1 = pe_in.calculateEntropy();
-            
-            //System.out.println("m: "+m+", s1: "+s1+", h1: "+h1);
-            /*
-            Fluid fluid = pe_in.getFluid();
-            double p2 = pe_out.getPressure();
-            
-            state.reset();
-            state.pressure(p2);
-            state.entropy(s1);
-            
-            double h2s = fluid.enthalpy(state);
-            double np = np_p.getValue();
-            double wp = wp_p.getValue();
-           
-            System.out.println("h2s: "+h2s+", np: "+np+", wp:"+wp);
-            System.out.println("-");
-            */
             return wp - m * (h2 - h1);
         }
     }
@@ -174,8 +151,7 @@ public class Pump extends TurboMachine implements WorkConsumingDevice {
         temp_out.setMax(2000);
         
         addEquation(new WorkEquation(
-            work, 
-            isentropicEfficiency,
+            work,
             f1, f2, 
             f1.getMassRateProp()) );
         addEquation(new TemperatureEquation(f1, f2, isentropicEfficiency) );

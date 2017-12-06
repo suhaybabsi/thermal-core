@@ -20,11 +20,6 @@ import java.util.List;
  */
 public class ClosedFeedWaterHeater extends SteadyFlowDevice {
 
-    private Pipe in1Pipe;
-    private Pipe in2Pipe;
-    private Pipe out1Pipe;
-    private Pipe out2Pipe;
-    
     public static class MassConservationEquation extends ThermalEquation {
         
         private final Property massIn;
@@ -151,11 +146,6 @@ public class ClosedFeedWaterHeater extends SteadyFlowDevice {
         addEquation(new Pipe.FlowPropertyEquation(fi2, fi2.getEnthalpyProp()));
         addEquation(new Pipe.FlowPropertyEquation(fo1, fo1.getEnthalpyProp()));
         addEquation(new Pipe.FlowPropertyEquation(fo2, fo2.getEnthalpyProp()));
-        
-        //addEquation(new Pipe.FlowPropertyEquation(pe_in1, pe_in1.getTemperatureProp()));
-        //addEquation(new Pipe.FlowPropertyEquation(pe_in2, pe_in2.getTemperatureProp()));
-        //addEquation(new Pipe.FlowPropertyEquation(pe_out1, pe_out1.getTemperatureProp()));
-        //addEquation(new Pipe.FlowPropertyEquation(pe_out2, pe_out2.getTemperatureProp()));
     }
     
     @Override
